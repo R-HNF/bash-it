@@ -77,7 +77,7 @@ function __awskeys_show {
 function __awskeys_export {
 	if [[ $(__awskeys_list) == *"$1"* ]]; then
 		local p_keys
-		IFS=" " read -r -a p_keys <<< "$(__awskeys_get "$1" | tr -d " ")"
+		IFS=" " read -r -a p_keys <<< "$(__awskeys_get "$1" | tr '\n' ' ')"
 		if [[ -n "${p_keys[*]}" ]]; then
 			for p_key in "${p_keys[@]}"; do
 				local key="${p_key%=*}"
